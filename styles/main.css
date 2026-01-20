@@ -1,0 +1,202 @@
+:root {
+  --text: #e8e8ff;
+  --text-soft: #b0b0d0;
+  --card-bg: rgba(20, 20, 35, 0.38);     
+  --card-border: rgba(200, 200, 255, 0.12);
+  --blur: blur(14px);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  --neon: #a0b0ff;
+  --neon-glow: 0 0 10px rgba(160, 176, 255, 0.5), 0 0 20px rgba(160, 176, 255, 0.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #000;
+  line-height: 1.6;
+  position: relative;
+}
+
+#bg-video {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+  object-fit: cover;
+}
+
+#bg-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.58);           
+  z-index: -1;
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 40px 16px 100px;
+  position: relative;
+  z-index: 1;
+}
+
+header {
+  text-align: center;
+  padding: 60px 0 40px;
+}
+
+h1 {
+  font-size: 3.4rem;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  color: var(--neon);
+  text-shadow: var(--neon-glow);
+  animation: neon-flicker 8s infinite linear, neon-glow-pulse 6s infinite ease-in-out;
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; text-shadow: var(--neon-glow); }
+  20%, 24%, 55% { opacity: 0.45; text-shadow: none; }
+}
+
+@keyframes neon-glow-pulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(160,176,255,0.6), 0 0 24px rgba(160,176,255,0.35); }
+  50%      { text-shadow: 0 0 16px rgba(160,176,255,0.9), 0 0 36px rgba(160,176,255,0.55); }
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #8080a0;
+  margin-top: 8px;
+  opacity: 0.85;
+}
+
+.card,
+.section-card {
+  background: var(--card-bg);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 48px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  animation: appear 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition: all 0.4s ease;
+}
+
+.card:hover,
+.section-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.55), inset 0 0 24px rgba(160,176,255,0.10);
+}
+
+.card:nth-of-type(1) { animation-delay: 0.3s; }
+.card:nth-of-type(2) { animation-delay: 0.5s; }
+.section-card:nth-of-type(1) { animation-delay: 0.7s; }
+.section-card:nth-of-type(2) { animation-delay: 0.9s; }
+
+@keyframes appear {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.info-row {
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.label {
+  color: var(--text-soft);
+  display: inline-block;
+  min-width: 140px;
+}
+
+.icons-right {
+  float: right;
+  display: flex;
+  gap: 14px;
+  margin-top: -6px;
+}
+
+.icon-link {
+  display: block;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.icon-link:hover {
+  transform: translateY(-4px) scale(1.12);
+  box-shadow: 0 8px 24px rgba(160,176,255,0.4);
+  filter: brightness(1.15);
+}
+
+.icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.small-separator {
+  text-align: center;
+  color: var(--neon);
+  font-size: 0.95rem;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin: 70px 0 28px;
+  text-shadow: var(--neon-glow);
+  opacity: 0.9;
+  animation: neon-flicker 10s infinite linear, neon-glow-pulse 7s infinite ease-in-out;
+}
+
+.section-title {
+  color: #c0c0e0;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(160,176,255,0.12);
+}
+
+.os-row, .mobile-row {
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+  transition: color 0.4s;
+}
+
+.os-row:hover, .mobile-row:hover {
+  color: #f0f0ff;
+}
+
+footer {
+  text-align: center;
+  color: #aaaaaa;
+  font-size: 0.9rem;
+  margin-top: 80px;
+  opacity: 0.75;
+}
+
+@media (max-width: 600px) {
+  .card, .section-card { padding: 24px; }
+  h1 { font-size: 2.7rem; }
+  .label { min-width: auto; display: block; margin-bottom: 4px; }
+  .icons-right { float: none; margin: 20px 0 0; justify-content: center; }
+  .small-separator { letter-spacing: 5px; font-size: 0.9rem; }
+}
